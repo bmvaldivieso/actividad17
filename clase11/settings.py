@@ -50,15 +50,24 @@ JAZZMIN_SETTINGS = {
         # Enlace externo con nueva ventana
         {"name": "Repositorio", "url": "https://github.com/bmvaldivieso/actividad17", "new_window": True},
 
-        # Modelo específico en el menú con un nombre más descriptivo
-        {"name": "Usuarios", "model": "auth.User"},
     ],
+     "usermenu_links": [
+        # Enlace a la lista de usuarios
+        {"name": "Usuarios", "url": "admin:auth_user_changelist", "icon": "fas fa-list", "permissions": ["auth.view_user"]},
+    ],
+    "language_chooser": True,
+    "custom_css": "admin/css/custom.css",
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "theme": "slate",#Cambiar el tema
 }
 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware', 
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -119,7 +128,12 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGES = [
+    ('en', 'English'),
+    ('es', 'Español'),
+]
+
+LANGUAGE_CODE = 'es' 
 
 TIME_ZONE = 'UTC'
 
@@ -132,8 +146,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [ BASE_DIR / "static", ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
