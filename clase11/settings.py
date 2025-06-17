@@ -42,8 +42,19 @@ INSTALLED_APPS = [
 ]
 
 JAZZMIN_SETTINGS = {
-    
+    "topmenu_links": [
+
+        # Enlace a la página de inicio con permisos
+        {"name": "Inicio", "url": "admin:index", "permissions": ["auth.view_user"]},
+
+        # Enlace externo con nueva ventana
+        {"name": "Repositorio", "url": "https://github.com/bmvaldivieso/actividad17", "new_window": True},
+
+        # Modelo específico en el menú con un nombre más descriptivo
+        {"name": "Usuarios", "model": "auth.User"},
+    ],
 }
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
